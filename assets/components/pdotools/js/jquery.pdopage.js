@@ -72,7 +72,7 @@
             $(document).on('click', this.settings.link, function (e) {
                 e.preventDefault();
                 var href = $(this).prop('href');
-                var match = href.match(new RegExp(_this.key + '=(\\d+)'));
+                var match = href.match(new RegExp(_this.key + '[=|\/](\\d+)'));
                 var page = !match ? 1 : match[1];
                 if (_this.page != page) {
                     if (_this.history) {
@@ -97,7 +97,7 @@
             var has_results = false;
             $(this.settings.link).each(function () {
                 var href = $(this).prop('href');
-                var match = href.match(new RegExp(_this.key + '=(\\d+)'));
+                var match = href.match(new RegExp(_this.key + '[=|\/](\\d+)'));
                 var page = !match ? 1 : match[1];
                 if (page > _this.page) {
                     has_results = true;
@@ -129,7 +129,7 @@
             var current = params[this.key] || 1;
             $(this.settings.link).each(function () {
                 var href = $(this).prop('href');
-                var match = href.match(new RegExp(_this.key + '=(\\d+)'));
+                var match = href.match(new RegExp(_this.key + '[=|\/](\\d+)'));
                 var page = !match ? 1 : Number(match[1]);
                 if (page > current) {
                     if (_this.history) {

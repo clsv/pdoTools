@@ -19,7 +19,7 @@ pdoPage.initialize = function (config) {
                 e.preventDefault();
                 var href = $(this).prop('href');
                 var key = config['pageVarKey'];
-                var match = href.match(new RegExp(key + '=(\\d+)'));
+                var match = href.match(new RegExp(key + '[=|\/](\\d+)'));
                 var page = !match ? 1 : match[1];
                 if (pdoPage.keys[key] != page) {
                     if (config.history) {
@@ -67,7 +67,7 @@ pdoPage.initialize = function (config) {
                 var has_results = false;
                 $(config['link']).each(function () {
                     var href = $(this).prop('href');
-                    var match = href.match(new RegExp(key + '=(\\d+)'));
+                    var match = href.match(new RegExp(key + '[=|\/](\\d+)'));
                     var page = !match ? 1 : match[1];
                     if (page > pdoPage.keys[key]) {
                         has_results = true;
@@ -103,7 +103,7 @@ pdoPage.addPage = function (config) {
     var current = pdoPage.keys[key] || 1;
     $(config['link']).each(function () {
         var href = $(this).prop('href');
-        var match = href.match(new RegExp(key + '=(\\d+)'));
+        var match = href.match(new RegExp(key + '[=|\/](\\d+)'));
         var page = !match ? 1 : Number(match[1]);
         if (page > current) {
             if (config.history) {
@@ -124,7 +124,7 @@ pdoPage.loadPage = function (href, config, mode) {
     var rows = $(config['rows']);
     var pagination = $(config['pagination']);
     var key = config['pageVarKey'];
-    var match = href.match(new RegExp(key + '=(\\d+)'));
+    var match = href.match(new RegExp(key + '[=|\/](\\d+)'));
     var page = !match ? 1 : Number(match[1]);
     if (!mode) {
         mode = 'replace';
